@@ -1,11 +1,21 @@
- import fs from "fs";
+const fs = require('fs');
 
-const content = 'Je manipule les fichiers avec un module node !';
+let data;
 
-fs.writeFile('./data.txt', content, err => {
-  if (err) {
-    console.error(err);
-  } else {
-    console.log(('Fichier écrit avec succès'));
-  }
-})
+try {
+  data = fs.readFileSync('./data.txt', 'utf8');
+  console.log("Contenu du fichier data.txt: ", data);
+} catch (err) {
+  console.error(err);
+}
+
+function letterDivide(text) {
+    const letters = text.split('');
+    const filtered = letters.filter((_, index) => index % 2 === 0);
+    return filtered.join(''); 
+}
+
+if (data) {
+  const result = letterDivide(data);
+  console.log("Le résultat est : ", result);
+}
