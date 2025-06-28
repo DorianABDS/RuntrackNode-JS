@@ -1,13 +1,11 @@
-import { URL } from 'url';
+ import fs from "fs";
 
-const urlString = "https://www.google.com/search?query=nodejs";
-const parsedUrl = new URL(urlString);
+const content = 'Je manipule les fichiers avec un module node !';
 
-console.log("Protocole :", parsedUrl.protocol);
-console.log("Nom d'hôte :", parsedUrl.hostname);
-console.log("Paramètres :", parsedUrl.searchParams.toString());
-
-parsedUrl.hostname = "www.laplateforme.io";
-parsedUrl.searchParams.append("lang", "fr");
-
-console.log("Nouvelle URL :", parsedUrl.toString());
+fs.writeFile('./data.txt', content, err => {
+  if (err) {
+    console.error(err);
+  } else {
+    console.log(('Fichier écrit avec succès'));
+  }
+})
